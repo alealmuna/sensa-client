@@ -16,14 +16,15 @@ server according to the sampling_period variable and the activated
 datastreams defined on the config file.
 
 ## Socket server command messages
-Activate IO
 
-: ```{"action": "activateIO", "type": "<IO_TYPE>", "pin":"<pin_ID>"}```
+* Activate IO
 
-Install new firmware
+ ```{"action": "activateIO", "type": "<IO_TYPE>", "pin":"<pin_ID>"}```
 
-: ```{"action": "install_fw", "version":"<firmware_version>"}```
+* Install new firmware
 
-Updated value from subscribed device
+ ```{"action": "install_fw", "version":"<firmware_version>"}```
 
-: ```{"id": "<datastream_id>", "value": "<new_value>"}```
+* Updated value from subscribed device
+
+ ```{"id": "<datastream_id>", "value": "<new_value>"}```
