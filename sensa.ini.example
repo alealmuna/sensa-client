@@ -1,16 +1,15 @@
 [server]
 socket_url = ws://sensa.amucan.com:4200/
 api_url = http://sensa.amucan.com/api
-api_token = iRC4lDf7Fp9ITU-OOOdD3Qx
+# user:ale@almuna.cl
+api_token = AJI9_qP-lGLI6a1jrwgsrA
 [device]
 port = /dev/ttyATH0
 baud = 57600
-sampling_period = 300
+sampling_period = 600
 firmware_version = 1.b
-device_id = 56396f106861774f78000000
-datastream_ids = ["5450114168617720cc010000", "545011686861772129020000", "54658dce68617742bb000000", "54658e366861774385000000", "54658e6c6861773ff6020000"]
-#datastream_ids = ["546a2c676861776908cf0900", "546a2c486861776908cd0900","546a2ca26861776908d30900", "546a2c7d6861776908d10900", "5470ecf168617757d9010000", "5470eccb68617757d9000000", "546ae3166861772a07010000", "5470ed2868617757d9020000"]
+device_id = 566379e968617739b7000000
+datastreams = [{'type': 'SHT10T', 'id': '56637a4f68617739b7010000', 'pin': '5'},{'type': 'SHT10H', 'id': '56637a7368617739b7020000', 'pin': '5'},{'type': 'AM2302T', 'id': '56637a9768617739b7030000', 'pin': '10'},{'type': 'AM2302H', 'id': '56637ba168617739b7040000', 'pin': '10'}, {'type': 'AM2315T', 'id': '56637cd368617739b7050000', 'pin': '0'}, {'type': 'AM2315H', 'id': '56637ce268617739b7060000', 'pin': '0'}, {'type': 'DS18B20', 'id': '56637d6668617739b7070000', 'pin': '8'}]
+#,{'type': 'RES_MOIS', 'id': '56637e1368617739b7080000', 'pin': '2'}{'type': 'RES_MOIS', 'id': '56637e2068617739b7090000', 'pin': '3'}]
 [suscriptions]
-datastreams = ["546299386861772ef1000000", "5465d1346861776632000000"]
-datastream_ids = ["546299386861772ef1000000", "5465d1346861776632000000"]
-#datastream_ids = ["5470ed4d68617757d9030000", "546ae32d6861772a07030000", "5470ed6d68617757d9040000", "5470ed8468617757d9050000"]
+datastreams = [{'type': 'BIN_RSWITCH', 'id': '56637ef968617739b70a0000', 'pin': '11'}, {'type': 'BIN_RSWITCH', 'id': '56637f0868617739b70b0000', 'pin': '12'}]
