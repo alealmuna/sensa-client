@@ -40,6 +40,7 @@ class Client():
         self.load_config(config_filename)
         if serial_comm:
             self.activateIOs()
+        self.initialize_switches()
         self.store_data = store_data
         self.db_file = db_file
         logging.info('Client started')
@@ -361,6 +362,38 @@ class Client():
 
         print 'FIRMWARE UPDATED. New version', new_version
         '''
+
+    def initialize_switches(self):
+        ''' Request the values stored on the API and turn on the corresponding
+            switches
+        '''
+        response = requests.get(self.device_url, headers=self.api_hdrs)
+        datastreams = json.loads(response.text)['datastreams']
+        try:
+            mcu = serial.Serial(self.dev_port, self.dev_baud, timeout=3)
+        except serial.SerialException:
+            logging.error('MCU can not be found or can not be configured')
+            return 0
+        for ds in self.datastream_suscriptions:
+            if ds['id'] in [d['id'] for d in datastreams]:
+                value = [d['current'] for d in datastreams
+                         if d['id'] == ds['id']][0]
+                if value is None:
+                    continue
+                value = int(value)
+                if ds['type'] == 'BIN_RSWITCH':
+                    if(value == 1):
+                        value = 0
+                    else:
+                        value = 1
+                elif value != 1:
+                    continue
+                msg = 'Writing %s on %s in pin %s' % (
+                    value, ds['type'], ds['pin'])
+                logging.debug(msg)
+                cmd = 'd/%s/%s' % (ds['pin'], value)
+                mcu.write(cmd.encode())
+        mcu.close()
 
 
 def check_connection():
